@@ -50,7 +50,7 @@ File 'Adroeed.txt' has been created
 
 ## 💡 Future Improvements (Todo)
 
-- [ ] Add `mkdir` command to create directories  
+- [x] Add `mkdir` command to create directories  
 - [x] Add `ls` command to list files  
 - [ ] Add `readfile` to display file contents  
 - [ ] Support multi-line file input  
