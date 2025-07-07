@@ -18,12 +18,12 @@ int main()
 
         int count = sscanf(input, "%s %s", command, filename);
 
-        for (int i = 0; i < command[i] != '\0'; i++) //removes case sensitivity
+        for (int i = 0; i < command[i] != '\0'; i++) // removes case sensitivity
         {
             command[i] = tolower(command[i]);
         }
 
-        if (count >= 1 && strcmp(command, "mkfile") == 0) //creates a file
+        if (count >= 1 && strcmp(command, "mkfile") == 0) // creates a file
         {
             {
                 if (count < 2)
@@ -49,7 +49,7 @@ int main()
             fclose(f);
             printf("File '%s' has been created\n", filename);
         }
-        else if (strcmp(command, "ls") == 0) //displays the files inside a directory 
+        else if (strcmp(command, "ls") == 0) // displays the files inside a directory
         {
             struct dirent *de;
             DIR *dr = opendir(".");
@@ -68,7 +68,7 @@ int main()
 
             closedir(dr);
         }
-        else if (count >= 1 && strcmp(command, "mkdir") == 0) //creates a directory 
+        else if (count >= 1 && strcmp(command, "mkdir") == 0) // creates a directory
         {
             if (count < 2)
             {
@@ -86,41 +86,68 @@ int main()
                     printf("Folder not created not created\n");
                 }
             }
-        } 
-        else if(count>=1 && strcmp(command, "rmdir")==0) //removes directory
+        }
+        else if (count >= 1 && strcmp(command, "rmdir") == 0) // removes directory
         {
-            if(count<2) {
+            if (count < 2)
+            {
                 printf("Error: Enter appropriate directory name\n");
                 continue;
             }
 
-            if(rmdir(filename) == 0) {
+            if (rmdir(filename) == 0)
+            {
                 printf("folder '%s' removed\n", filename);
-            } else {
+            }
+            else
+            {
                 printf("Error: Cannot remove folder\n");
                 continue;
             }
-
         }
-        else if(count>=1 && strcmp(command, "rmfile")==0) //removes a file
+        else if (count >= 1 && strcmp(command, "rmfile") == 0) // removes a file
         {
-            if(count<2) {
+            if (count < 2)
+            {
                 printf("Error: Enter appropriate filename\n");
                 continue;
             }
 
-            if(remove(filename)==0) {
+            if (remove(filename) == 0)
+            {
                 printf("File '%s' removed\n", filename);
-            } else {
+            }
+            else
+            {
                 printf("Error: Cannot remove file\n");
             }
-
         }
-        else if (strcmp(command, "exit") == 0) //exits the terminal 
+        else if (count >= 1 && strcmp(command, "show") == 0) // display the contents of file
+        {
+            if (count < 2)
+            {
+                printf("Please provide a file name to shou\n");
+                continue;
+            }
+            FILE *f = fopen(filename, "r");
+            if (f == NULL)
+            {
+                perror("error opening the file\n");
+                continue;
+            }
+            char ch;
+            while ((ch = fgetc(f)) != EOF)
+            {
+                putchar(ch);
+            }
+            printf("\n\n");
+            fclose(f);
+        }
+        else if (strcmp(command, "exit") == 0) // exits the terminal
         {
             break;
         }
-        else //if the command is invalid
+        else // if the command is invalid
         {
             printf("Unknown command.\n");
         }
