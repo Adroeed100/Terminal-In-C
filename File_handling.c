@@ -3,6 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <dirent.h>
+#include <unistd.h>
 
 int main()
 {
@@ -142,6 +143,28 @@ int main()
             }
             printf("\n\n");
             fclose(f);
+        }
+        else if(count >= 1 && strcmp(command, "cd") == 0) // changing the directory
+        {
+            if(count<2) {
+                fprintf(stderr, "please select a valid directory\n");
+                continue;
+            }
+            if(chdir(filename) != 0) {
+                perror("cd error\n");
+            }
+        }
+        else if(strcmp(command, "whereami") == 0) //to display the current directory
+        {
+            char cwd[1024];
+            if(getcwd(cwd, sizeof(cwd)) != NULL)
+            {
+                printf("%s\n",cwd);
+            }
+            else
+            {
+                perror("getcwd() error");
+            }
         }
         else if (strcmp(command, "exit") == 0) // exits the terminal
         {
