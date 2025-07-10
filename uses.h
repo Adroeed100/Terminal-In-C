@@ -15,7 +15,7 @@ void sfunc_ls(char *args)
 
     if (!dr)
     {
-        perror("Error opening directory");
+        perror("Error opening directory\n");
         return;
     }
 
@@ -69,15 +69,10 @@ void sfunc_show(char *args)
 
 void sfunc_mkfile(char *args)
 {
-    if (!args)
-    {
-        printf("error:enter file name");
-        return;
-    }
     FILE *f = fopen(args, "w");
     if (f == NULL)
     {
-        perror("error creating a file");
+        perror("error creating a file\n");
         return;
     }
     char text[500];
@@ -92,7 +87,7 @@ void sfunc_mkdir(char *args)
 {
     if (!args)
     {
-        printf("error:enter direntory name");
+        printf("Error: enter direntory name\n");
         return;
     }
     if (mkdir(args) == 0)
@@ -101,7 +96,7 @@ void sfunc_mkdir(char *args)
     }
     else
     {
-        perror("error creating directory");
+        perror("error creating directory\n");
     }
 }
 
@@ -109,12 +104,12 @@ void sfunc_cd(char *args)
 {
     if (!args)
     {
-        printf("error:enter directory name");
+        printf("error:enter directory name\n");
         return;
     }
     if (chdir(args) != 0)
     {
-        perror("error changing directory");
+        perror("error changing directory\n");
         return;
     }
 }
@@ -128,7 +123,7 @@ void sfunc_whereami(char *args)
     }
     else
     {
-        perror("error getting current directory");
+        perror("error getting current directory\n");
     }
 }
 
