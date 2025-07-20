@@ -72,7 +72,7 @@ void sfunc_mkfile(char *args)
     FILE *f = fopen(args, "w");
     if (f == NULL)
     {
-        perror("error creating a file\n");
+        perror("Error creating a file");
         return;
     }
     char text[500];
@@ -104,12 +104,12 @@ void sfunc_cd(char *args)
 {
     if (!args)
     {
-        printf("error:enter directory name\n");
+        printf("Error: Enter directory name\n");
         return;
     }
     if (chdir(args) != 0)
     {
-        perror("error changing directory\n");
+        perror("Error changing directory");
         return;
     }
 }
@@ -127,6 +127,8 @@ void sfunc_whereami(char *args)
     }
 }
 
+void sfunc_exit(char *args) {exit(0);}
+
 typedef struct
 {
     char *command;
@@ -142,4 +144,5 @@ Command captian[] = {
     {"show", sfunc_show},
     {"ls", sfunc_ls},
     {"whereami", sfunc_whereami},
+    {"exit", sfunc_exit},
     {NULL, NULL}};
